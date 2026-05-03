@@ -1,0 +1,11 @@
+{
+  "name": "aims-english-pwa",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build and local preview tooling for the AIMS English PWA",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp -R aims-final/* dist/",
+    "preview": "python3 -m http.server 4173 --directory dist",
+    "check:pwa": "node scripts/check-pwa.js"
+  }
+}
