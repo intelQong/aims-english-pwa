@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate required project files exist
+        run: |
+          test -f aims-final/index.html
+          test -f aims-final/worker.js
+          test -f aims-final/sw.js
+          test -f aims-final/schema.sql
+          test -f aims-final/manifest.json
+          test -f aims-final/wrangler.toml
+
+      - name: Validate manifest JSON
+        run: python -m json.tool aims-final/manifest.json > /dev/null
+
+      - name: Validate worker hardening markers
+        run: |
+          grep -q "X-Content-Type-Options" aims-final/worker.js
+          grep -q "Too many requests" aims-final/worker.js
+          grep -q "ALLOWED_ORIGIN" aims-final/worker.js
+
+      - name: Ensure frontend config placeholders are explicit
+        run: |
+          grep -q "YOUR-SUBDOMAIN" aims-final/index.html
+          grep -q "YOUR_VAPID_PUBLIC_KEY_HERE" aims-final/index.html
