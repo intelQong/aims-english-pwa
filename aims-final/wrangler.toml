@@ -1,0 +1,23 @@
+name = "aims-worker"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aims-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[[kv_namespaces]]
+binding = "AIMS_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+[vars]
+VAPID_SUBJECT = "mailto:admin@aims-english.com"
+
+# Set these as secrets — never put real values in this file:
+# wrangler secret put ADMIN_EMAIL
+# wrangler secret put ADMIN_PASSWORD
+# wrangler secret put JWT_SECRET
+# wrangler secret put VAPID_PUBLIC_KEY
+# wrangler secret put VAPID_PRIVATE_KEY
