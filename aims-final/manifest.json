@@ -1,0 +1,9 @@
+{
+  "name": "AIMS English",
+  "short_name": "AIMS",
+  "description": "AIMS English Student Portal",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f5f0",
+  "theme_color": "#1D6B7A"
+}
